@@ -2,16 +2,21 @@ package com.baymc.patrol.config;
 
 import com.baymc.patrol.error.ErrorCode;
 import com.baymc.patrol.error.PluginException;
+import com.baymc.patrol.util.YamlDefaults;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.time.Duration;
+import java.util.function.BiConsumer;
 
 /**
  * 配置管理器
  */
 public final class ConfigManager {
     private final JavaPlugin plugin;
+    private BiConsumer<String, Integer> completionLogger = (file, count) -> {
+    };
     private volatile PluginSettings settings;
 
     public ConfigManager(JavaPlugin plugin) {
@@ -20,18 +25,31 @@ public final class ConfigManager {
 
     public void load() {
         plugin.saveDefaultConfig();
+        completeMissingKeys();
         plugin.reloadConfig();
         FileConfiguration config = plugin.getConfig();
         settings = read(config);
     }
 
     public void reload() {
+        completeMissingKeys();
         plugin.reloadConfig();
         settings = read(plugin.getConfig());
     }
 
     public PluginSettings settings() {
         return settings;
+    }
+
+    public void setCompletionLogger(BiConsumer<String, Integer> completionLogger) {
+        this.completionLogger = completionLogger;
+    }
+
+    private void completeMissingKeys() {
+        int completedKeys = YamlDefaults.mergeMissingKeys(plugin, "config.yml", new File(plugin.getDataFolder(), "config.yml"));
+        if (completedKeys > 0) {
+            completionLogger.accept("config.yml", completedKeys);
+        }
     }
 
     private PluginSettings read(FileConfiguration config) {

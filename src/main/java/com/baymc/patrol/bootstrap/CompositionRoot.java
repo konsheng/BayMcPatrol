@@ -59,9 +59,20 @@ public final class CompositionRoot {
     public CompositionRoot(JavaPlugin plugin) {
         this.plugin = plugin;
         this.configManager = new ConfigManager(plugin);
-        this.configManager.load();
-        this.languageService = new MiniMessageLanguageService(plugin);
+        MiniMessageLanguageService miniMessageLanguageService = new MiniMessageLanguageService(plugin);
+        this.languageService = miniMessageLanguageService;
+        miniMessageLanguageService.setCompletionLogger((file, count) -> plugin.getServer().getConsoleSender().sendMessage(this.languageService.component(
+                "console.lang-completed",
+                MessagePlaceholder.unparsed("file", file),
+                MessagePlaceholder.unparsed("count", Integer.toString(count))
+        )));
         this.languageService.reload();
+        this.configManager.setCompletionLogger((file, count) -> plugin.getServer().getConsoleSender().sendMessage(this.languageService.component(
+                "console.config-completed",
+                MessagePlaceholder.unparsed("file", file),
+                MessagePlaceholder.unparsed("count", Integer.toString(count))
+        )));
+        this.configManager.load();
         this.scheduler = createScheduler(plugin);
 
         ErrorService errorService = new ErrorService(plugin, configManager, languageService);

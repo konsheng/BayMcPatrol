@@ -9,6 +9,7 @@ BayMcPatrol 是一个用于 Velocity 群组服的 Paper/Folia 后端跨服随机
 - `/patrol status` 查看插件运行状态
 - `/patrol reload` 重载配置和语言文件
 - `/patrol help` 查看命令帮助
+- 支持配置文件和语言文件缺失键自动补全
 - Redis 正常时支持全群组跨服巡查
 - Redis 异常时自动降级为本服巡查
 - 支持 `redis.enabled=false` 永久本服模式

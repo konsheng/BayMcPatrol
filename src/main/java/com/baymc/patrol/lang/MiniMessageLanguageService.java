@@ -5,11 +5,13 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import com.baymc.patrol.util.YamlDefaults;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.function.BiConsumer;
 
 /**
  * 基于 MiniMessage 的语言服务
@@ -17,6 +19,8 @@ import java.io.File;
 public final class MiniMessageLanguageService implements LanguageService {
     private final JavaPlugin plugin;
     private final MiniMessage miniMessage = MiniMessage.miniMessage();
+    private BiConsumer<String, Integer> completionLogger = (file, count) -> {
+    };
     private volatile YamlConfiguration language;
 
     public MiniMessageLanguageService(JavaPlugin plugin) {
@@ -29,7 +33,15 @@ public final class MiniMessageLanguageService implements LanguageService {
         if (!langFile.exists()) {
             plugin.saveResource("lang/zh_CN.yml", false);
         }
+        int completedKeys = YamlDefaults.mergeMissingKeys(plugin, "lang/zh_CN.yml", langFile);
         language = YamlConfiguration.loadConfiguration(langFile);
+        if (completedKeys > 0) {
+            completionLogger.accept("lang/zh_CN.yml", completedKeys);
+        }
+    }
+
+    public void setCompletionLogger(BiConsumer<String, Integer> completionLogger) {
+        this.completionLogger = completionLogger;
     }
 
     @Override
@@ -58,10 +70,7 @@ public final class MiniMessageLanguageService implements LanguageService {
         if (value != null) {
             return value;
         }
-        if ("system.missing-key".equals(key)) {
-            return "<dark_gray>[<green>BayMcPatrol</green>]</dark_gray> <red>缺失语言项: <key>";
-        }
-        return raw("system.missing-key").replace("<key>", key);
+        return key;
     }
 
     @Override

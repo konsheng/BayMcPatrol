@@ -67,15 +67,14 @@ console:
   redis-connect-failed: "<prefix><red>Redis 连接失败, 当前进入本服降级模式, traceId=<trace_id>"
   config-loaded: "<prefix><green>配置文件已加载"
   lang-loaded: "<prefix><green>语言文件已加载: <language>"
+  config-completed: "<prefix><green>已自动补全配置文件 <white><file></white> 缺失键 <white><count></white> 个"
+  lang-completed: "<prefix><green>已自动补全语言文件 <white><file></white> 缺失键 <white><count></white> 个"
   sync-started: "<prefix><green>在线玩家同步任务已启动"
   sync-stopped: "<prefix><yellow>在线玩家同步任务已停止"
   registered-channel: "<prefix><green>已注册插件消息通道: <channel>"
   folia-detected: "<prefix><green>检测到 Folia, 使用 Folia 调度器"
   paper-detected: "<prefix><green>检测到 Paper, 使用 Paper 调度器"
   error-summary: "<prefix><red>错误: <error>, traceId=<trace_id>"
-
-system:
-  missing-key: "<prefix><red>缺失语言项: <key>"
 
 error:
   internal: "<prefix><red>插件内部错误, 错误编号: <trace_id>"

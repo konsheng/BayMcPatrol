@@ -45,9 +45,14 @@ public final class ReloadUseCase {
     }
 
     public void execute(CommandSender sender) {
+        long startedAt = System.nanoTime();
         try {
             reloadOperation.run();
-            send(sender, languageService.component("command.reload-success"));
+            long elapsedMillis = (System.nanoTime() - startedAt) / 1_000_000L;
+            send(sender, languageService.component(
+                    "command.reload-success",
+                    MessagePlaceholder.unparsed("time", Long.toString(elapsedMillis))
+            ));
             send(sender, languageService.component("command.reload-status",
                     MessagePlaceholder.unparsed("redis_status", redisStatusText()),
                     MessagePlaceholder.unparsed("mode", modeText())));

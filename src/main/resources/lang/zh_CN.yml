@@ -17,7 +17,7 @@ command:
   player-required: "<prefix><red>该命令需要由在线玩家执行"
   no-permission: "<prefix><red>你没有权限执行此命令"
   invalid-command: "<prefix><red>未知子命令"
-  reload-success: "<prefix><green>配置和语言文件已重载"
+  reload-success: "<prefix><green>配置和语言文件已重载 <gray>(耗时: </gray><white><time>ms</white><gray>)</gray>"
   reload-status: "<prefix><gray>Redis: <white><redis_status></white> <gray>| 运行模式: </gray><white><mode></white>"
 
 help:

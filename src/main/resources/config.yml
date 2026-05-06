@@ -1,29 +1,56 @@
 server:
   # 当前服务器 ID, 必须和 Velocity 配置中的服务器名一致
-  id: "survival-1"
+  # 例如 Velocity 中服务器名为 default, 这里就填写 default
+  # 跨服切换时会发送 Connect -> server.id
+  id: "default"
 
   # 当前服务器显示名, 仅用于消息展示
-  alias: "生存一区"
+  # 不参与 Redis key 生成, 也不参与 Velocity 切服
+  alias: "默认服务器"
 
 redis:
+  # 是否启用 Redis
+  # true = 使用 Redis 支持全群组跨服巡查
+  # false = 不连接 Redis, 永久使用本服巡查模式
   enabled: true
+
+  # Redis key 前缀
+  # 同一个群组内所有子服必须保持一致
   key-prefix: "baymcpatrol"
 
+  # Redis 地址
   host: "127.0.0.1"
+
+  # Redis 端口
   port: 6379
+
+  # Redis 密码
+  # 没有密码时保持空字符串
   password: ""
+
+  # Redis 数据库编号
   database: 0
+
+  # 是否使用 SSL 连接 Redis
   ssl: false
 
   timeout:
+    # Redis 建立连接超时时间, 单位毫秒
     connect-millis: 3000
+
+    # Redis 命令执行超时时间, 单位毫秒
     command-millis: 3000
 
   reconnect:
+    # Redis 断开或异常后是否允许自动重连
     enabled: true
+
+    # Redis 自动重连间隔, 单位秒
     delay-seconds: 5
 
 velocity:
+  # 是否启用 Velocity 跨服切换
+  # false 时即使 Redis 正常, 也无法执行跨服 Connect
   enabled: true
 
   # 后端通过 BungeeCord 插件消息请求 Velocity 切服
@@ -32,32 +59,63 @@ velocity:
 
 patrol:
   # 是否优先巡查当前服务器玩家
+  # true = 本服有候选玩家时优先随机本服玩家
+  # false = 全群组候选玩家统一随机
   same-server-first: false
 
   # seen/history/cursor 会话过期时间
+  # 超过该时间后, 管理员的一轮内不重复状态和历史回退状态会过期
+  # 单位分钟
   session-expire-minutes: 60
 
   # 跨服 pending 超时时间
+  # 管理员切服后目标服需要在该时间内消费 pending
+  # 单位秒
   pending-timeout-seconds: 30
 
   # active 不是冷却, 只是一次巡查任务的异常兜底过期时间
+  # active 存在期间同一个管理员不能发起新的巡查任务
+  # 单位秒
   active-timeout-seconds: 30
 
 teleport:
   # 跨服进服后延迟多少 tick 再传送
+  # 20 tick 通常约等于 1 秒
   delay-after-join-ticks: 10
 
 sync:
+  # 本服在线玩家信息同步到 Redis 的间隔
+  # 单位秒
   online-refresh-seconds: 5
+
+  # 本服在线玩家数据在 Redis 中的过期时间
+  # 应大于 online-refresh-seconds
+  # 单位秒
   online-ttl-seconds: 15
+
+  # 本服心跳数据在 Redis 中的过期时间
+  # 应大于 online-refresh-seconds
+  # 单位秒
   heartbeat-ttl-seconds: 15
 
 language:
+  # 默认语言文件名
+  # 当前第一版内置 zh_CN
   default: "zh_CN"
 
 runtime:
   error:
+    # 是否启用错误调试模式
+    # false 时控制台只输出简短错误摘要和 traceId
     debug: false
+
+    # 是否将完整异常堆栈输出到控制台
+    # 只有 debug 为 true 时才会生效
     print-stacktrace-to-console: false
+
+    # 是否向玩家显示内部错误 traceId
     show-trace-id-to-player: true
+
+    # 内存中保留最近错误报告的数量
+    # /patrol status 会显示最近错误码
     keep-last-errors: 20

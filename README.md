@@ -34,16 +34,15 @@ bungee-plugin-message-channel = true
 
 ```yaml
 server:
-  id: "survival-1"
-  alias: "生存一区"
+  id: "default"
+  alias: "默认服务器"
 ```
 
 `server.id` 必须和 Velocity 配置中的服务器名完全一致, 例如
 
 ```toml
 [servers]
-survival-1 = "127.0.0.1:25566"
-resource-1 = "127.0.0.1:25567"
+default = "127.0.0.1:25565"
 ```
 
 跨服切换时插件会向 Velocity 发送

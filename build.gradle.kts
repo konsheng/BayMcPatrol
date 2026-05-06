@@ -22,6 +22,7 @@ dependencies {
 
     implementation("io.lettuce:lettuce-core:7.5.1.RELEASE")
     implementation("com.google.code.gson:gson:2.14.0")
+    implementation("org.bstats:bstats-bukkit:3.2.1")
 }
 
 java {
@@ -53,6 +54,7 @@ tasks {
         relocate("reactor", "com.baymc.patrol.libs.reactor")
         relocate("org.reactivestreams", "com.baymc.patrol.libs.reactivestreams")
         relocate("com.google.gson", "com.baymc.patrol.libs.gson")
+        relocate("org.bstats", "com.baymc.patrol.libs.bstats")
     }
 
     build {

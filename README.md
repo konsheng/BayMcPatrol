@@ -153,3 +153,7 @@ Lettuce
 Gson
 Adventure + MiniMessage
 ```
+
+## 📊 bStats
+
+[![bStats](https://bstats.org/signatures/bukkit/BayMcPatrol.svg)](https://bstats.org/plugin/bukkit/BayMcPatrol/31135)

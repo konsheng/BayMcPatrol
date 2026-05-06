@@ -25,6 +25,7 @@ public final class BayMcPatrolTabCompleter implements TabCompleter {
         }
         String prefix = args[0].toLowerCase();
         List<String> completions = new ArrayList<>();
+        addIfMatches(completions, "help", prefix);
         addIfAllowed(sender, completions, "next", "baymcpatrol.use", prefix);
         addIfAllowed(sender, completions, "back", "baymcpatrol.back", prefix);
         addIfAllowed(sender, completions, "status", "baymcpatrol.status", prefix);
@@ -34,6 +35,12 @@ public final class BayMcPatrolTabCompleter implements TabCompleter {
 
     private void addIfAllowed(CommandSender sender, List<String> completions, String value, String permission, String prefix) {
         if (sender.hasPermission(permission) && value.startsWith(prefix)) {
+            completions.add(value);
+        }
+    }
+
+    private void addIfMatches(List<String> completions, String value, String prefix) {
+        if (value.startsWith(prefix)) {
             completions.add(value);
         }
     }

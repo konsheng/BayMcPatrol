@@ -4,6 +4,7 @@ import com.baymc.patrol.application.PatrolBackUseCase;
 import com.baymc.patrol.application.PatrolNextUseCase;
 import com.baymc.patrol.application.ReloadUseCase;
 import com.baymc.patrol.application.StatusUseCase;
+import com.baymc.patrol.application.HelpUseCase;
 import com.baymc.patrol.command.BayMcPatrolCommand;
 import com.baymc.patrol.command.BayMcPatrolTabCompleter;
 import com.baymc.patrol.config.ConfigManager;
@@ -133,6 +134,7 @@ public final class CompositionRoot {
                 serverModeService,
                 this::reloadRuntime
         );
+        HelpUseCase helpUseCase = new HelpUseCase(languageService, scheduler);
 
         PendingTeleportService pendingTeleportService = new PendingTeleportService(
                 configManager,
@@ -152,7 +154,7 @@ public final class CompositionRoot {
         );
 
         this.onlineSyncService = new OnlineSyncService(plugin, configManager, languageService, redisManager, scheduler, redisOnlineRepository);
-        this.command = new BayMcPatrolCommand(languageService, patrolNextUseCase, patrolBackUseCase, statusUseCase, reloadUseCase);
+        this.command = new BayMcPatrolCommand(languageService, patrolNextUseCase, patrolBackUseCase, statusUseCase, reloadUseCase, helpUseCase);
         this.tabCompleter = new BayMcPatrolTabCompleter();
         this.playerJoinListener = new PlayerJoinListener(onlineSyncService, pendingTeleportService);
         this.playerQuitListener = new PlayerQuitListener(scheduler, onlineSyncService);

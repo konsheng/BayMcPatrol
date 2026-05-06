@@ -20,6 +20,14 @@ command:
   reload-success: "<prefix><green>配置和语言文件已重载"
   reload-status: "<prefix><gray>Redis: <white><redis_status></white> <gray>| 运行模式: </gray><white><mode></white>"
 
+help:
+  header: "<prefix><green>命令帮助"
+  next: "<gray>/patrol next <dark_gray>-</dark_gray> <white>随机巡查下一个玩家</white>"
+  back: "<gray>/patrol back <dark_gray>-</dark_gray> <white>回退到上一个巡查目标</white>"
+  status: "<gray>/patrol status <dark_gray>-</dark_gray> <white>查看插件状态</white>"
+  reload: "<gray>/patrol reload <dark_gray>-</dark_gray> <white>重载配置和语言文件</white>"
+  help: "<gray>/patrol help <dark_gray>-</dark_gray> <white>查看命令帮助</white>"
+
 status:
   header: "<prefix><green>插件状态"
   version: "<gray>版本: <white><version></white>"

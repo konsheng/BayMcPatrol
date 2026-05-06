@@ -8,6 +8,7 @@ BayMcPatrol 是一个用于 Velocity 群组服的 Paper/Folia 后端跨服随机
 - `/patrol back` 回退到上一个巡查历史目标
 - `/patrol status` 查看插件运行状态
 - `/patrol reload` 重载配置和语言文件
+- `/patrol help` 查看命令帮助
 - Redis 正常时支持全群组跨服巡查
 - Redis 异常时自动降级为本服巡查
 - 支持 `redis.enabled=false` 永久本服模式
@@ -55,11 +56,13 @@ Connect -> server.id
 
 ```text
 /baymcpatrol
+/baymcpatrol help
 /baymcpatrol next
 /baymcpatrol back
 /baymcpatrol status
 /baymcpatrol reload
 /patrol
+/patrol help
 /patrol next
 /patrol back
 /patrol status
@@ -153,6 +156,6 @@ Gson
 Adventure + MiniMessage
 ```
 
-## 📊 bStats
+## bStats
 
 [![bStats](https://bstats.org/signatures/bukkit/BayMcPatrol.svg)](https://bstats.org/plugin/bukkit/BayMcPatrol/31135)

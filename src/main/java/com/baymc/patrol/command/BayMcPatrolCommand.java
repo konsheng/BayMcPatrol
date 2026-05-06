@@ -1,5 +1,6 @@
 package com.baymc.patrol.command;
 
+import com.baymc.patrol.application.HelpUseCase;
 import com.baymc.patrol.application.PatrolBackUseCase;
 import com.baymc.patrol.application.PatrolNextUseCase;
 import com.baymc.patrol.application.ReloadUseCase;
@@ -20,19 +21,22 @@ public final class BayMcPatrolCommand implements CommandExecutor {
     private final PatrolBackUseCase patrolBackUseCase;
     private final StatusUseCase statusUseCase;
     private final ReloadUseCase reloadUseCase;
+    private final HelpUseCase helpUseCase;
 
     public BayMcPatrolCommand(
             LanguageService languageService,
             PatrolNextUseCase patrolNextUseCase,
             PatrolBackUseCase patrolBackUseCase,
             StatusUseCase statusUseCase,
-            ReloadUseCase reloadUseCase
+            ReloadUseCase reloadUseCase,
+            HelpUseCase helpUseCase
     ) {
         this.languageService = languageService;
         this.patrolNextUseCase = patrolNextUseCase;
         this.patrolBackUseCase = patrolBackUseCase;
         this.statusUseCase = statusUseCase;
         this.reloadUseCase = reloadUseCase;
+        this.helpUseCase = helpUseCase;
     }
 
     @Override
@@ -43,6 +47,7 @@ public final class BayMcPatrolCommand implements CommandExecutor {
             case "back" -> handleBack(sender);
             case "status" -> handleStatus(sender);
             case "reload" -> handleReload(sender);
+            case "help" -> helpUseCase.execute(sender);
             default -> languageService.send(sender, "command.invalid-command");
         }
         return true;

@@ -1,0 +1,78 @@
+prefix: "<dark_gray>[<green>BayMcPatrol</green>]</dark_gray> "
+
+messages:
+  patrol-next: "<prefix><green>正在巡查 <white><target></white> <gray>|</gray> <white><server_alias></white> <gray>| 上次巡查: </gray><white><last_patrol></white>"
+  patrol-back: "<prefix><green>已回退到 <white><target></white> <gray>|</gray> <white><server_alias></white>"
+  switching-server: "<prefix><gray>正在前往 <white><server_alias></white>"
+  patrol-active: "<prefix><yellow>巡查处理中"
+
+  no-target: "<prefix><red>没有可巡查玩家"
+  target-offline: "<prefix><red>目标已离线"
+  no-history: "<prefix><red>没有上一个巡查目标"
+  pending-expired: "<prefix><red>巡查传送已超时"
+  teleport-failed: "<prefix><red>传送失败"
+  server-switch-failed: "<prefix><red>跨服切换失败"
+
+command:
+  player-required: "<prefix><red>该命令需要由在线玩家执行"
+  no-permission: "<prefix><red>你没有权限执行此命令"
+  invalid-command: "<prefix><red>未知子命令"
+  reload-success: "<prefix><green>配置和语言文件已重载"
+  reload-status: "<prefix><gray>Redis: <white><redis_status></white> <gray>| 运行模式: </gray><white><mode></white>"
+
+status:
+  header: "<prefix><green>插件状态"
+  version: "<gray>版本: <white><version></white>"
+  server-id: "<gray>服务器ID: <white><server_id></white>"
+  server-alias: "<gray>服务器别名: <white><server_alias></white>"
+  redis: "<gray>Redis: <white><redis_status></white>"
+  mode: "<gray>运行模式: <white><mode></white>"
+  local-online: "<gray>本服在线: <white><local_online></white>"
+  global-online: "<gray>全群组在线: <white><global_online></white>"
+  candidates: "<gray>可巡查玩家: <white><candidates></white>"
+  folia: "<gray>Folia模式: <white><folia></white>"
+  last-error: "<gray>最近错误: <white><error></white>"
+  boolean-yes: "是"
+  boolean-no: "否"
+  no-error: "无"
+
+mode:
+  cross-server: "跨服巡查"
+  local-fallback: "本服降级巡查"
+  local-only: "本服巡查"
+
+time:
+  never: "从未巡查"
+  just-now: "刚刚"
+  seconds-ago: "<seconds>秒前"
+  minutes-ago: "<minutes>分钟前"
+  hours-minutes-ago: "<hours>小时<minutes>分钟前"
+  days-hours-ago: "<days>天<hours>小时前"
+
+redis:
+  status-ok: "正常"
+  status-error: "异常"
+  status-disabled: "已关闭"
+
+console:
+  enabled: "<prefix><green>插件已启用"
+  disabled: "<prefix><red>插件已卸载"
+  redis-connected: "<prefix><green>Redis 已连接"
+  redis-connect-failed: "<prefix><red>Redis 连接失败, 当前进入本服降级模式, traceId=<trace_id>"
+  config-loaded: "<prefix><green>配置文件已加载"
+  lang-loaded: "<prefix><green>语言文件已加载: <language>"
+  sync-started: "<prefix><green>在线玩家同步任务已启动"
+  sync-stopped: "<prefix><yellow>在线玩家同步任务已停止"
+  registered-channel: "<prefix><green>已注册插件消息通道: <channel>"
+  folia-detected: "<prefix><green>检测到 Folia, 使用 Folia 调度器"
+  paper-detected: "<prefix><green>检测到 Paper, 使用 Paper 调度器"
+  error-summary: "<prefix><red>错误: <error>, traceId=<trace_id>"
+
+system:
+  missing-key: "<prefix><red>缺失语言项: <key>"
+
+error:
+  internal: "<prefix><red>插件内部错误, 错误编号: <trace_id>"
+  redis-timeout: "<prefix><red>Redis 响应超时"
+  redis-unavailable: "<prefix><red>Redis 当前不可用"
+  config-invalid: "<prefix><red>配置文件无效"

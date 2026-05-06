@@ -1,0 +1,63 @@
+server:
+  # 当前服务器 ID, 必须和 Velocity 配置中的服务器名一致
+  id: "survival-1"
+
+  # 当前服务器显示名, 仅用于消息展示
+  alias: "生存一区"
+
+redis:
+  enabled: true
+  key-prefix: "baymcpatrol"
+
+  host: "127.0.0.1"
+  port: 6379
+  password: ""
+  database: 0
+  ssl: false
+
+  timeout:
+    connect-millis: 3000
+    command-millis: 3000
+
+  reconnect:
+    enabled: true
+    delay-seconds: 5
+
+velocity:
+  enabled: true
+
+  # 后端通过 BungeeCord 插件消息请求 Velocity 切服
+  # Velocity 需要开启 bungee-plugin-message-channel
+  channel: "BungeeCord"
+
+patrol:
+  # 是否优先巡查当前服务器玩家
+  same-server-first: false
+
+  # seen/history/cursor 会话过期时间
+  session-expire-minutes: 60
+
+  # 跨服 pending 超时时间
+  pending-timeout-seconds: 30
+
+  # active 不是冷却, 只是一次巡查任务的异常兜底过期时间
+  active-timeout-seconds: 30
+
+teleport:
+  # 跨服进服后延迟多少 tick 再传送
+  delay-after-join-ticks: 10
+
+sync:
+  online-refresh-seconds: 5
+  online-ttl-seconds: 15
+  heartbeat-ttl-seconds: 15
+
+language:
+  default: "zh_CN"
+
+runtime:
+  error:
+    debug: false
+    print-stacktrace-to-console: false
+    show-trace-id-to-player: true
+    keep-last-errors: 20

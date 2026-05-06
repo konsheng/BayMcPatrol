@@ -1,0 +1,18 @@
+package com.baymc.patrol.error;
+
+/**
+ * 插件错误码
+ */
+public enum ErrorCode {
+    REDIS_UNAVAILABLE,
+    REDIS_TIMEOUT,
+    CONFIG_INVALID,
+    LANGUAGE_FILE_INVALID,
+    TARGET_OFFLINE,
+    TARGET_SERVER_OFFLINE,
+    SERVER_SWITCH_FAILED,
+    TELEPORT_FAILED,
+    PENDING_EXPIRED,
+    COMMAND_BUSY,
+    INTERNAL_ERROR
+}

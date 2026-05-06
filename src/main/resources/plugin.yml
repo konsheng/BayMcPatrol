@@ -1,0 +1,33 @@
+name: BayMcPatrol
+version: '${version}'
+main: com.baymc.patrol.BayMcPatrolPlugin
+api-version: '1.21'
+folia-supported: true
+
+commands:
+  baymcpatrol:
+    description: Cross-server random patrol teleport
+    usage: /baymcpatrol [next|back|reload|status]
+    aliases:
+      - patrol
+
+permissions:
+  baymcpatrol.use:
+    description: Allows using patrol and patrol next
+    default: op
+
+  baymcpatrol.back:
+    description: Allows using patrol back
+    default: op
+
+  baymcpatrol.status:
+    description: Allows using patrol status
+    default: op
+
+  baymcpatrol.reload:
+    description: Allows using patrol reload
+    default: op
+
+  baymcpatrol.bypass:
+    description: Prevents the player from being selected by random patrol
+    default: false

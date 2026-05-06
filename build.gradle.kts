@@ -4,7 +4,9 @@ plugins {
 }
 
 group = "com.baymc"
-version = "1.0-SNAPSHOT"
+
+val baseVersion = "1.0-SNAPSHOT"
+version = providers.gradleProperty("artifactVersionOverride").orElse(baseVersion).get()
 
 repositories {
     mavenCentral()
@@ -29,6 +31,12 @@ java {
 }
 
 tasks {
+    register("printVersion") {
+        doLast {
+            println(baseVersion)
+        }
+    }
+
     processResources {
         filesMatching("plugin.yml") {
             expand("version" to project.version)

@@ -39,10 +39,8 @@ status:
   global-online: "<gray>全群组在线: <white><global_online></white>"
   candidates: "<gray>可巡查玩家: <white><candidates></white>"
   folia: "<gray>Folia模式: <white><folia></white>"
-  last-error: "<gray>最近错误: <white><error></white>"
   boolean-yes: "是"
   boolean-no: "否"
-  no-error: "无"
 
 mode:
   cross-server: "跨服巡查"

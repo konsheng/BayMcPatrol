@@ -63,8 +63,7 @@ public record PluginSettings(
     public record ErrorSettings(
             boolean debug,
             boolean printStacktraceToConsole,
-            boolean showTraceIdToPlayer,
-            int keepLastErrors
+            boolean showTraceIdToPlayer
     ) {
     }
 }

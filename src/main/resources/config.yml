@@ -115,7 +115,3 @@ runtime:
 
     # 是否向玩家显示内部错误 traceId
     show-trace-id-to-player: true
-
-    # 内存中保留最近错误报告的数量
-    # /patrol status 会显示最近错误码
-    keep-last-errors: 20

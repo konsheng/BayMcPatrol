@@ -2,7 +2,6 @@ package com.baymc.patrol.application;
 
 import com.baymc.patrol.config.ConfigManager;
 import com.baymc.patrol.domain.PatrolTarget;
-import com.baymc.patrol.error.ErrorService;
 import com.baymc.patrol.lang.LanguageService;
 import com.baymc.patrol.lang.MessagePlaceholder;
 import com.baymc.patrol.redis.RedisManager;
@@ -26,7 +25,6 @@ public final class StatusUseCase {
     private final JavaPlugin plugin;
     private final ConfigManager configManager;
     private final LanguageService languageService;
-    private final ErrorService errorService;
     private final SchedulerAdapter scheduler;
     private final RedisManager redisManager;
     private final ServerModeService serverModeService;
@@ -37,7 +35,6 @@ public final class StatusUseCase {
             JavaPlugin plugin,
             ConfigManager configManager,
             LanguageService languageService,
-            ErrorService errorService,
             SchedulerAdapter scheduler,
             RedisManager redisManager,
             ServerModeService serverModeService,
@@ -47,7 +44,6 @@ public final class StatusUseCase {
         this.plugin = plugin;
         this.configManager = configManager;
         this.languageService = languageService;
-        this.errorService = errorService;
         this.scheduler = scheduler;
         this.redisManager = redisManager;
         this.serverModeService = serverModeService;
@@ -97,10 +93,6 @@ public final class StatusUseCase {
                 MessagePlaceholder.unparsed("candidates", Long.toString(candidates))));
         send(sender, senderUuid, languageService.component("status.folia",
                 MessagePlaceholder.unparsed("folia", languageService.plain(scheduler.isFolia() ? "status.boolean-yes" : "status.boolean-no"))));
-        send(sender, senderUuid, languageService.component("status.last-error",
-                MessagePlaceholder.unparsed("error", errorService.lastError()
-                        .map(report -> report.code().name())
-                        .orElse(languageService.plain("status.no-error")))));
     }
 
     private String redisStatusText() {

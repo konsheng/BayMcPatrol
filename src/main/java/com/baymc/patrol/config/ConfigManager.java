@@ -79,8 +79,7 @@ public final class ConfigManager {
                         new PluginSettings.ErrorSettings(
                                 config.getBoolean("runtime.error.debug", false),
                                 config.getBoolean("runtime.error.print-stacktrace-to-console", false),
-                                config.getBoolean("runtime.error.show-trace-id-to-player", true),
-                                config.getInt("runtime.error.keep-last-errors", 20)
+                                config.getBoolean("runtime.error.show-trace-id-to-player", true)
                         )
                 )
         );

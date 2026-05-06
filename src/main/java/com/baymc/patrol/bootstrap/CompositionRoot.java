@@ -118,7 +118,6 @@ public final class CompositionRoot {
                 plugin,
                 configManager,
                 languageService,
-                errorService,
                 scheduler,
                 redisManager,
                 serverModeService,
